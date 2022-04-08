@@ -1,0 +1,78 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>FNB Coin Dispenser</span>
+  
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <span class="example-spacer"
+        ><p class="user-name">
+          {{firstname}} {{lastname}}
+        </p></span
+      >
+  
+      <button mat-icon-button class="example-icon" (click)="doLogout()" aria-label="Example icon-button with share icon">
+        <mat-icon>power_settings_new</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <div class="insert-money-div">
+    <mat-icon class="money-icon" matSuffix>paid</mat-icon><br />
+    <div class="">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter amount</mat-label>
+        <input matInput [(ngModel)]="amount" placeholder="Enter amount" />
+        <mat-icon matSuffix>paid</mat-icon>
+      </mat-form-field>
+      <button mat-flat-button (click)="getDenominations()" color="primary">
+        Enter amount
+      </button>
+    </div>
+  </div>
+  
+  <div>
+    <div class="table-header">
+      <h3>Coins in the dispenser</h3>
+    </div>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="coins">
+        <th mat-header-cell *matHeaderCellDef>Coins</th>
+        <td mat-cell *matCellDef="let element">Number of coins</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="tenCent">
+        <th mat-header-cell *matHeaderCellDef>10c</th>
+        <td mat-cell *matCellDef="let element">{{element.tenCent}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="twentyCent">
+        <th mat-header-cell *matHeaderCellDef>20c</th>
+        <td mat-cell *matCellDef="let element">{{element.twentyCent}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="fiftyCent">
+        <th mat-header-cell *matHeaderCellDef>50c</th>
+        <td mat-cell *matCellDef="let element">{{element.fiftyCent}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="oneRand">
+        <th mat-header-cell *matHeaderCellDef>R1</th>
+        <td mat-cell *matCellDef="let element">{{element.oneRand}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="twoRand">
+        <th mat-header-cell *matHeaderCellDef>R2</th>
+        <td mat-cell *matCellDef="let element">{{element.twoRand}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="fiveRand">
+        <th mat-header-cell *matHeaderCellDef>R5</th>
+        <td mat-cell *matCellDef="let element">{{element.fiveRand}}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
